@@ -1,0 +1,1 @@
+cat /etc/apache2/sites-enabled/* | grep -hso -P '(?<=ServerName )(.+\..+)' | sed -e 's/^/https:\/\//' | sort -u | xargs -n 1 curl -Li -o /dev/null -w '%{http_code}|%{url_effective}\n' -s -k
